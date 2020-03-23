@@ -13,7 +13,9 @@ const fetchData = async () => {
 
 const getNoticias = async () => {
 	var noticias = [];
+
 	await fetchData().then(async $ => {
+		// Recorremos el div que contiene las noticias
 		$('#PageContent_C027_Col00 > .vertical-list')
 			.find($('.list-view--item'))
 			.each((index, element) => {
