@@ -4,9 +4,9 @@ import Map from '../Map'
 
 function index() {
     return (
-            <Fragment>
-				<Map/>
-			</Fragment>
+        <Fragment>
+            <Map/>
+        </Fragment>
     )
 }
 
