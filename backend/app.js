@@ -17,7 +17,7 @@ app.use(function(req, res, next) {
 });
 
 // rutas
-//app.use(require('./routes'));
+app.use(require('./routes'));
 
 app.listen(port, () => {
 	console.log(`Corriendo en el puerto ${port}`);
