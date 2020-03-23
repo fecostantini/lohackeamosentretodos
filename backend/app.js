@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -17,7 +18,7 @@ app.use(function(req, res, next) {
 });
 
 // rutas
-//app.use(require('./routes'));
+app.use(require('./routes'));
 
 app.listen(port, () => {
 	console.log(`Corriendo en el puerto ${port}`);
