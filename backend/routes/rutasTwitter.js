@@ -4,10 +4,10 @@ var rutasTwitter = express.Router();
 var Twitter = require('twitter');
 
 var client = new Twitter({
-	consumer_key: 'VhJgrXS5wtQyCNgTr5QlIerrS',
-	consumer_secret: 'ZzTDuZyyVIvkRx2oSqTsa8n0uXpT1EFdFeHNnIfRPTYgcy9Lk2',
-	access_token_key: '2976886871-srjNKdREutHM2M1dIxrm6dgieK0jrcFcSGTCiKc',
-	access_token_secret: 'n1SfKm62joTGhsuBMLaOvyzweWuMGqnzPJuDkoWiHkgb7'
+	consumer_key: process.env.CONSUMER_KEY,
+	consumer_secret: process.env.CONSUMER_SECRET,
+	access_token_key: process.env.ACCESS_TOKEN_KEY,
+	access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
 
 var params = {
