@@ -1,10 +1,18 @@
 import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
+import Home from './components/Home'
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 	return (
-		<div className='App'>
-			<h1>Holis</h1>
-		</div>
+		<BrowserRouter>
+			<Switch>
+				<Route exact path="/" render={Home}/>
+				<Route exact path="/home" render={Home}/>
+			</Switch>
+		</BrowserRouter>
 	);
 }
 
