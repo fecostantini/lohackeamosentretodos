@@ -4,8 +4,8 @@ import React from 'react';
 import { GoogleMaps } from './credentials';
 
 const _ = require('lodash');
-const { compose, withProps, lifecycle } = require('recompose');
-const { withScriptjs, withGoogleMap, GoogleMap, Marker } = require('react-google-maps');
+const { compose, withProps, lifecycle, withStateHandlers } = require('recompose');
+const { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } = require('react-google-maps');
 const { SearchBox } = require('react-google-maps/lib/components/places/SearchBox');
 
 const ubicacionArgentina = { lat: -41.2006336, lng: -66.5713392 };
@@ -18,7 +18,7 @@ const Map = compose(
 		mapElement: <div style={{ height: `100vh` }} />
 	}),
 	lifecycle({
-		componentWillMount() {
+		componentDidMount() {
 			const refs = {};
 
 			this.setState({
@@ -41,7 +41,7 @@ const Map = compose(
 					const places = refs.searchBox.getPlaces();
 					const bounds = new google.maps.LatLngBounds();
 
-					places.forEach(place => {
+					places.forEach(place => {						
 						if (place.geometry.viewport) {
 							bounds.union(place.geometry.viewport);
 						} else {
@@ -57,11 +57,25 @@ const Map = compose(
 						center: nextCenter,
 						markers: nextMarkers
 					});
-					// refs.map.fitBounds(bounds);
 				}
 			});
 		}
 	}),
+	withStateHandlers(() => ({
+		isOpen: false,
+		index: null
+	  }), {
+			onToggleOpen: ({ isOpen }) => index => ({				
+				isOpen: !isOpen,
+				index: index
+			})
+		}, {
+			onToggleClose: ({ isOpen }) => () => ({
+				isOpen: !isOpen,
+				index: null
+			})
+		},
+	),
 	withScriptjs,
 	withGoogleMap
 )(props => (
@@ -91,7 +105,15 @@ const Map = compose(
 			/>
 		</SearchBox>
 		{props.markers.map((marker, index) => (
-			<Marker key={index} position={marker.position} />
+			<Marker key={index} position={marker.position} onClick={() => props.onToggleOpen(index)}>
+			{props.isOpen && props.index === index &&
+				<InfoWindow 
+					onCloseClick={() => props.onToggleClose}
+				>
+					<p>Aqui va la info del sitio</p>
+				</InfoWindow>
+			}
+		</Marker>
 		))}
 	</GoogleMap>
 ));
