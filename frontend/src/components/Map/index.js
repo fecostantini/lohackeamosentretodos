@@ -8,6 +8,8 @@ const { compose, withProps, lifecycle } = require('recompose');
 const { withScriptjs, withGoogleMap, GoogleMap, Marker } = require('react-google-maps');
 const { SearchBox } = require('react-google-maps/lib/components/places/SearchBox');
 
+const ubicacionArgentina = { lat: -41.2006336, lng: -66.5713392 };
+
 const Map = compose(
 	withProps({
 		googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${GoogleMaps}&v=3.exp&libraries=geometry,drawing,places`,
@@ -21,10 +23,7 @@ const Map = compose(
 
 			this.setState({
 				bounds: null,
-				center: {
-					lat: -41.2006336,
-					lng: -66.5713392
-				},
+				center: ubicacionArgentina,
 				markers: [],
 				onMapMounted: ref => {
 					refs.map = ref;
