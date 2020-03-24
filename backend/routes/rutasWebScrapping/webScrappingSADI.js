@@ -14,7 +14,7 @@ const getNoticiasSADI = async () => {
 
 	await fetchData().then(async $ => {
 		// Recorremos el div que contiene las noticias
-		$('.tagItemList')
+		$('div.g-content > div.platform-content.row-fluid > div.span12 > #k2Container.tagView > .tagItemList')
 			.find($('.tagItemView'))
 			.each((index, element) => {
 				if (index <= 5) {
