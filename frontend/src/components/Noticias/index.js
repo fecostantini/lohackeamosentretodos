@@ -16,12 +16,7 @@ const Noticias = () => {
 	}, []);
 
 	const CardNoticia = ({ noticia }) => (
-		<div
-			className='card col-lg-3 col-md-4 col-12'
-			onClick={() => {
-				window.location.href = noticia.url;
-			}}
-		>
+		<div className='card col-lg-3 col-md-4 col-12'>
 			<a className='btn stretched-link hidden' href={noticia.url}></a>
 			{noticia.imagen ? (
 				<div className='container mt-2'>
