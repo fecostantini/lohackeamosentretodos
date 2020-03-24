@@ -1,21 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 const Header = () => {
-	const getInformacionCOVID = async () => {
+	useEffect(async () => {
 		const URL = 'http://localhost:3210/twitter/getInformacionCOVID';
 		const resp = await axios.get(URL);
-		if (resp.data) {
-			setCantidadInfectados(resp.data.infectados);
-			setCantidadMuertos(resp.data.muertos);
-		}
-	};
+
+		setCantidadInfectados(resp.data.infectados);
+		setCantidadMuertos(resp.data.muertos);
+		setCantidadRecuperados(resp.data.recuperados);
+	}, []);
 
 	const [cantidadInfectados, setCantidadInfectados] = useState(0);
 	const [cantidadMuertos, setCantidadMuertos] = useState(0);
-
-	getInformacionCOVID();
+	const [cantidadRecuperados, setCantidadRecuperados] = useState(0);
 
 	return (
 		<nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
@@ -35,8 +34,9 @@ const Header = () => {
 				</ul>
 
 				<form className='form-inline my-2 my-lg-0'>
-					<span className='text-warning mx-2'>Infectados: {cantidadInfectados} </span>
-					<span className='text-danger'>Muertos: {cantidadMuertos}</span>
+					<span className='text-success font-weight-light'>Recuperados: {cantidadRecuperados}</span>
+					<span className='text-warning mx-2 font-weight-light'>Infectados: {cantidadInfectados} </span>
+					<span className='text-danger mx-2 font-weight-light'>Muertos: {cantidadMuertos}</span>
 				</form>
 			</div>
 		</nav>

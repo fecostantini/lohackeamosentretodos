@@ -1,9 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const Noticias = () => {
-	const history = useHistory();
 	const [noticiasOMS, setNoticiasOMS] = useState([]);
 	const [noticiasSADI, setNoticiasSADI] = useState([]);
 
