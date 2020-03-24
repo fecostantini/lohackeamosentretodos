@@ -3,7 +3,7 @@ var rutasWebScrappingSADI = express.Router();
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-const siteUrl = 'https://www.sadi.org.ar/';
+const siteUrl = 'https://www.sadi.org.ar';
 const scrappingUrl = `${siteUrl}/coronavirus`;
 
 const fetchData = async () => {
@@ -21,9 +21,10 @@ const getNoticias = async () => {
 			.each((index, element) => {
                 const titulo = $('.tagItemHeader > h2.tagItemTitle', element).text();
                 const fecha = $('.tagItemHeader > span.tagItemDateCreated', element).text();
-                const bajada = $('.tagItemBody > .tagItemIntroText > p', element).text()
+				const bajada = $('.tagItemBody > .tagItemIntroText > p', element).text()
+				const url = siteUrl + $('.tagItemHeader > h2.tagItemTitle > a', element).attr('href');
                 
-                noticiasSADI.push({ titulo, fecha, bajada });
+                noticiasSADI.push({ titulo, fecha, bajada, url });
                 
 			});
 	});
