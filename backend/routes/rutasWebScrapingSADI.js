@@ -19,12 +19,15 @@ const getNoticias = async () => {
 		$('.tagItemList')
 			.find($('.tagItemView'))
 			.each((index, element) => {
-                const titulo = $('.tagItemHeader > h2.tagItemTitle', element).text();
-                const fecha = $('.tagItemHeader > span.tagItemDateCreated', element).text();
-				const bajada = $('.tagItemBody > .tagItemIntroText > p', element).text()
+                let titulo = $('.tagItemHeader > h2.tagItemTitle', element).text();
+                let fecha = $('.tagItemHeader > span.tagItemDateCreated', element).text();
+				let bajada = $('.tagItemBody > .tagItemIntroText > p', element).text();
 				const url = siteUrl + $('.tagItemHeader > h2.tagItemTitle > a', element).attr('href');
-                
-                noticiasSADI.push({ titulo, fecha, bajada, url });
+				
+				let Parsetitulo = titulo.trim()
+				let Parsefecha = fecha.trim()
+				let Parsebajada = bajada.trim()
+                noticiasSADI.push({ Parsetitulo, Parsefecha, Parsebajada, url });
                 
 			});
 	});
