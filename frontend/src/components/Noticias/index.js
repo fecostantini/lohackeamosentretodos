@@ -17,22 +17,31 @@ const Noticias = () => {
 
 	const CardNoticia = ({ noticia }) => (
 		<div
-			className='card col-lg-2 col-md-4 col-12'
+			className='card col-lg-3 col-md-4 col-12'
 			onClick={() => {
 				window.location.href = noticia.url;
 			}}
 		>
+			<a className='btn stretched-link hidden' href={noticia.url}></a>
 			{noticia.imagen ? (
-				<div style={{ height: '280px' }}>
-					<img src={noticia.imagen} className='card-img-top' alt='imagen'></img>
+				<div className='container mt-2'>
+					<img
+						src={noticia.imagen}
+						className='card-img-top'
+						alt='imagen'
+						style={{ maxWidth: 'auto', height: '200px', objectFit: 'contain' }}
+					></img>
 				</div>
 			) : null}
 			<div className='card-body'>
-				<a className='btn stretched-link'>
-					<h5 className='card-title'>{noticia.titulo}</h5>
-				</a>
-				<p class='card-text'>
-					<small class='text-muted'>{noticia.fecha}</small>
+				<h5 className='card-title col'>{noticia.titulo}</h5>
+
+				<p class='card-text col'>{noticia.bajada ? noticia.bajada : null}</p>
+			</div>
+
+			<div className='col container align-items-baseline'>
+				<p class='card-text col text-right mb-3'>
+					<small class='text-muted align-self-baseline'>{noticia.fecha}</small>
 				</p>
 			</div>
 		</div>
@@ -56,9 +65,10 @@ const Noticias = () => {
 				</div>
 				{noticiasOMS.map(noticiaOMS => (noticiaOMS ? <CardNoticia noticia={noticiaOMS} /> : null))}
 			</div>
-			<div className='row'>
+
+			<div className='row my-5'>
 				<div className='col-12 text-center my-3 '>
-					<h1>Últimas noticias del SADI</h1>
+					<h1>Últimas noticias de la SADI</h1>
 				</div>
 				{noticiasSADI.map(noticiasSADI => (noticiasSADI ? <CardNoticia noticia={noticiasSADI} /> : null))}
 			</div>

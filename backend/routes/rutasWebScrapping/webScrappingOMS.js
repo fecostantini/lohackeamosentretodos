@@ -9,6 +9,8 @@ const fetchData = async () => {
 	return cheerio.load(pagina.data);
 };
 
+const CANTIDAD_NOTICIAS = 8;
+
 const getNoticiasOMS = async () => {
 	var noticiasOMS = [];
 
@@ -17,7 +19,7 @@ const getNoticiasOMS = async () => {
 		$('#PageContent_C027_Col00 > .vertical-list')
 			.find($('.list-view--item'))
 			.each((index, element) => {
-				if (index <= 5) {
+				if (index < CANTIDAD_NOTICIAS) {
 					const titulo = $('a', element).attr('aria-label');
 					const fecha = $('a > div.info > div.date > span', element).text();
 					const imagen = siteUrl + $('a > div > div > div', element).attr('data-image');

@@ -9,6 +9,8 @@ const fetchData = async () => {
 	return cheerio.load(pagina.data);
 };
 
+const CANTIDAD_NOTICIAS = 8;
+
 const getNoticiasSADI = async () => {
 	var noticiasSADI = [];
 
@@ -17,7 +19,7 @@ const getNoticiasSADI = async () => {
 		$('div.g-content > div.platform-content.row-fluid > div.span12 > #k2Container.tagView > .tagItemList')
 			.find($('.tagItemView'))
 			.each((index, element) => {
-				if (index <= 5) {
+				if (index < CANTIDAD_NOTICIAS) {
 					const titulo = $('.tagItemHeader > h2.tagItemTitle', element).text();
 					const fecha = $('.tagItemHeader > span.tagItemDateCreated', element).text();
 					const bajada = $('.tagItemBody > .tagItemIntroText > p', element).text();
