@@ -21,8 +21,9 @@ const getNoticiasSADI = async () => {
 					const titulo = $('.tagItemHeader > h2.tagItemTitle', element).text();
 					const fecha = $('.tagItemHeader > span.tagItemDateCreated', element).text();
 					const bajada = $('.tagItemBody > .tagItemIntroText > p', element).text();
+					const url = siteUrl + $('.tagItemHeader > h2.tagItemTitle > a', element).attr('href');
 
-					noticiasSADI.push({ titulo: titulo.trim(), fecha: fecha.trim(), bajada: bajada.trim() });
+					noticiasSADI.push({ titulo: titulo.trim(), fecha: fecha.trim(), bajada: bajada.trim(), url });
 				}
 			});
 	});
